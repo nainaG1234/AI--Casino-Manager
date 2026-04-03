@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Casino Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        
+        <header class="app-header">
+            <h1>🎰 AI Casino Manager</h1>
+            <button id="quit-btn" class="quit-btn">Quit Game</button>
+        </header>
+        
+        <div class="slot-machine">
+            <div class="reels">
+                <div class="reel" id="reel1">🍒</div>
+                <div class="reel" id="reel2">🔔</div>
+                <div class="reel" id="reel3">7️⃣</div>
+            </div>
+            <p id="result-msg">Ready to test your luck?</p>
+            
+            <div class="bet-controls">
+                <label for="bet-input">Bet Amount: $</label>
+                <input type="number" id="bet-input" value="5" min="1">
+            </div>
+
+            <button id="spin-btn">SPIN</button>
+            
+            <p id="bonus-msg"></p>
+        </div>
+
+        <div class="dashboard">
+            <div class="panel stats-panel">
+                <h3>📊 Player Stats</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="icon">🔄</span>
+                        <div class="stat-info">
+                            <span class="label">Spins</span>
+                            <span class="value" id="spins-val">{{ stats.spins }}</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon">🏆</span>
+                        <div class="stat-info">
+                            <span class="label">Wins</span>
+                            <span class="value" id="wins-val">{{ stats.wins }}</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="icon">💔</span>
+                        <div class="stat-info">
+                            <span class="label">Losses</span>
+                            <span class="value" id="losses-val">{{ stats.losses }}</span>
+                        </div>
+                    </div>
+                    <div class="stat-card highlight">
+                        <span class="icon">💰</span>
+                        <div class="stat-info">
+                            <span class="label">Balance</span>
+                            <span class="value">$<span id="balance-val">{{ stats.balance }}</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel ai-panel">
+                <h3>🤖 AI Churn Prediction</h3>
+                <div class="ai-content">
+                    <p class="risk-text">Churn Risk: <strong id="churn-risk">Unknown</strong></p>
+                    <div class="progress-container">
+                        <div class="progress-labels">
+                            <span>0%</span>
+                            <span id="churn-prob-text">0%</span>
+                            <span>100%</span>
+                        </div>
+                        <div class="progress-bg">
+                            <div class="progress-fill" id="churn-bar"></div>
+                        </div>
+                    </div>
+                    <p class="tooltip"><em>*Probability of player quitting based on behavior.</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
